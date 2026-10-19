@@ -1,12 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- Tema utama aplikasi -->
-    <style name="Theme.Akbar_3TIB" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Theme.Akbar_3TIB"
+        parent="Theme.MaterialComponents.DayNight.NoActionBar">
 
-        <item name="colorPrimary">#2196F3</item>
-        <item name="colorPrimaryDark">#1976D2</item>
-        <item name="colorAccent">#03A9F4</item>
+        <item name="colorPrimary">#6750A4</item>
+        <item name="colorPrimaryVariant">#4F378B</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
 
+        <item name="colorSecondary">#625B71</item>
+        <item name="colorSecondaryVariant">#4F465F</item>
+        <item name="colorOnSecondary">#FFFFFF</item>
+
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#1C1B1F</item>
+
+        <item name="android:colorBackground">#FFFFFF</item>
+        <item name="colorError">#B3261E</item>
     </style>
 
 </resources>

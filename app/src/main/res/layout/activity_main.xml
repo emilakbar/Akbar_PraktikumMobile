@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,127 +6,92 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAF7FB"
+    android:padding="20dp"
     tools:context=".MainActivity">
 
-    <!-- Judul -->
     <TextView
-        android:id="@+id/textView6"
-        android:layout_width="wrap_content"
+        android:id="@+id/txtTitle"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Halaman Main Activity"
-        android:textColor="#333333"
-        android:textSize="18sp"
+        android:text="Halaman Utama"
+        android:textSize="26sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:gravity="center"
+        android:layout_marginTop="24dp"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Username -->
     <TextView
         android:id="@+id/txtUsername"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="45dp"
         android:text="Username"
-        android:textColor="#555555"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp"
+        android:layout_marginTop="28dp"
+        app:layout_constraintTop_toBottomOf="@id/txtTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView6" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Password -->
     <TextView
         android:id="@+id/txtPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="45dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="45dp"
         android:text="Password"
-        android:textColor="#555555"
-        android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:textSize="18sp"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/txtUsername"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtUsername" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Card -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/card"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:layout_marginTop="18dp"
-        app:cardBackgroundColor="#D0D0D0"
-        app:cardCornerRadius="25dp"
-        app:cardElevation="5dp"
-        app:layout_constraintEnd_toEndOf="parent"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSnackBar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tampilkan Snackbar"
+        android:layout_marginTop="28dp"
+        app:layout_constraintTop_toBottomOf="@id/txtPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/txtPassword">
+        app:layout_constraintEnd_toEndOf="parent" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <!-- Snack Bar -->
-            <Button
-                android:id="@+id/btnSnackBar"
-                android:layout_width="100dp"
-                android:layout_height="45dp"
-                android:background="@drawable/bg_snackbar"
-                android:text="SNACK BAR"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-            <!-- Alert Dialog -->
-            <Button
-                android:id="@+id/btnAlert"
-                android:layout_width="100dp"
-                android:layout_height="45dp"
-                android:layout_marginTop="15dp"
-                android:background="@drawable/bg_alert"
-                android:text="ALERT DIALOG"
-                android:textColor="#FFFFFF"
-                android:textSize="11sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <!-- Tombol Kembali -->
-    <Button
-        android:id="@+id/btnKembali"
-        android:layout_width="100dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="65dp"
-        android:background="@drawable/bg_kembali"
-        android:text="KEMBALI"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnAlert"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tampilkan Alert Dialog"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/btnSnackBar"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    <!-- Tombol Pertemuan 5 -->
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnToLima"
-        android:layout_width="130dp"
-        android:layout_height="45dp"
-        android:layout_marginTop="20dp"
-        android:background="@drawable/bg_kembali"
-        android:text="PERTEMUAN 5"
-        android:textColor="#FFFFFF"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Pertemuan 5"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/btnAlert"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btnKembali" />
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnKembali"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Kembali"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/btnToLima"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnLogout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Logout"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@id/btnKembali"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

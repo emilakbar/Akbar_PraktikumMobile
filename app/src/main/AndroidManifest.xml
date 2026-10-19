@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
-
-    <!-- Permission untuk koneksi internet / WebView -->
+    <!-- Izin Internet untuk memuat avatar menggunakan Glide -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
-        android:dataExtractionRules="@xml/data_extraction_rules"
-        android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="Akbar_3TIB"
+        android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Akbar_3TIB">
 
-        <!-- Activity Login -->
+        <!-- Splash Screen -->
         <activity
-            android:name=".LoginActivity"
+            android:name=".SplashActivity"
             android:exported="true"
-            android:windowSoftInputMode="adjustResize">
+            android:theme="@style/Theme.Akbar_3TIB">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,23 +25,39 @@
 
         </activity>
 
-        <!-- Activity Utama -->
+        <!-- Halaman Login -->
+        <activity
+            android:name=".LoginActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Halaman Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Activity Pertemuan 5 -->
+        <!-- Halaman Bottom Navigation -->
+        <activity
+            android:name=".BaseActivity"
+            android:exported="false"
+            android:windowSoftInputMode="adjustResize" />
+
+        <!-- Halaman Pertemuan 5 -->
         <activity
             android:name=".pertemuan5.LimaActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Activity WebView -->
         <activity
             android:name=".pertemuan5.WebViewActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <!-- Halaman Detail Pesan -->
+        <activity
+            android:name=".Message.MessageDetailActivity"
+            android:exported="false" />
 
     </application>
 

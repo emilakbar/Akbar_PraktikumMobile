@@ -3,4 +3,6 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="biru">#4f90ff</color>
+    <color name="nav_selected">#6750A4</color>
+    <color name="nav_unselected">#777777</color>
 </resources>

@@ -2,11 +2,8 @@ package com.example.Akbar_3tib
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.Akbar_3tib.databinding.ActivityMainBinding
 import com.example.Akbar_3tib.pertemuan5.LimaActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -19,67 +16,50 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        enableEdgeToEdge()
-
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
+        // Mengambil data username dari LoginActivity
+        val preferences = getSharedPreferences(
+            "LoginSession",
+            MODE_PRIVATE
+        )
 
-            val systemBars = insets.getInsets(
-                WindowInsetsCompat.Type.systemBars()
-            )
+        val username = preferences.getString(
+            "username",
+            intent.getStringExtra("username") ?: "Username"
+        )
 
-            v.setPadding(
-                systemBars.left,
-                systemBars.top,
-                systemBars.right,
-                systemBars.bottom
-            )
+        // Menampilkan username
+        binding.txtUsername.text = "Username: $username"
 
-            insets
-        }
+        // Menampilkan status password tanpa menampilkan password asli
+        binding.txtPassword.text = "Status: Berhasil login"
 
-        // Mengambil data dari LoginActivity
-        val user = intent.getStringExtra("username")
-        val pass = intent.getStringExtra("password")
-        val umur = intent.getIntExtra("umur", 0)
-
-        Log.d("Output", "Username: $user")
-        Log.d("Output", "Password: $pass")
-        Log.d("Output", "Umur: $umur")
-
-        // Menampilkan username dan password
-        binding.txtUsername.text = user ?: "Username"
-        binding.txtPassword.text = pass ?: "Password"
-
-        // Snack Bar
+        // Tombol Snackbar
         binding.btnSnackBar.setOnClickListener {
-
             Snackbar.make(
                 binding.root,
                 "Item dihapus",
                 Snackbar.LENGTH_LONG
-            )
-                .setAction("BATAL") {
-                    Snackbar.make(
-                        binding.root,
-                        "Penghapusan dibatalkan",
-                        Snackbar.LENGTH_SHORT
-                    ).show()
-                }
-                .show()
+            ).setAction("BATAL") {
+                Snackbar.make(
+                    binding.root,
+                    "Penghapusan dibatalkan",
+                    Snackbar.LENGTH_SHORT
+                ).show()
+            }.show()
         }
 
-        // Alert Dialog
+        // Tombol Alert Dialog
         binding.btnAlert.setOnClickListener {
-
             MaterialAlertDialogBuilder(this)
                 .setTitle("Hapus Data")
-                .setMessage("Data yang dihapus tidak bisa dikembalikan.")
+                .setMessage(
+                    "Data yang dihapus tidak bisa dikembalikan."
+                )
                 .setNegativeButton("Batal", null)
                 .setPositiveButton("Hapus") { dialog, _ ->
-
                     dialog.dismiss()
 
                     Snackbar.make(
@@ -97,17 +77,48 @@ class MainActivity : AppCompatActivity() {
             finish()
         }
 
-        // Tombol Pertemuan 5
+        // Tombol menuju Pertemuan 5
         binding.btnToLima.setOnClickListener {
-
-            Log.d("MainActivity", "Tombol Pertemuan 5 ditekan")
-
             val intent = Intent(
                 this@MainActivity,
                 LimaActivity::class.java
             )
-
             startActivity(intent)
+        }
+
+        // Tombol Logout
+        binding.btnLogout.setOnClickListener {
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Konfirmasi Logout")
+                .setMessage("Apakah kamu yakin ingin keluar?")
+                .setNegativeButton("Batal", null)
+                .setPositiveButton("Logout") { _, _ ->
+
+                    // Menghapus sesi login
+                    preferences.edit()
+                        .clear()
+                        .apply()
+
+                    Toast.makeText(
+                        this,
+                        "Berhasil logout",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    // Kembali ke LoginActivity
+                    val logoutIntent = Intent(
+                        this@MainActivity,
+                        LoginActivity::class.java
+                    )
+
+                    logoutIntent.flags =
+                        Intent.FLAG_ACTIVITY_NEW_TASK or
+                                Intent.FLAG_ACTIVITY_CLEAR_TASK
+
+                    startActivity(logoutIntent)
+                    finish()
+                }
+                .show()
         }
     }
 }

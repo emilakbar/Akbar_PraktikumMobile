@@ -1,13 +1,10 @@
+
 package com.example.Akbar_3tib
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.example.Akbar_3tib.databinding.ActivityLoginBinding
 
 class LoginActivity : AppCompatActivity() {
@@ -17,52 +14,69 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        enableEdgeToEdge()
-
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(
-                WindowInsetsCompat.Type.systemBars()
-            )
+        // Memeriksa apakah pengguna sudah login
+        val preferences = getSharedPreferences(
+            "LoginSession",
+            MODE_PRIVATE
+        )
 
-            v.setPadding(
-                systemBars.left,
-                systemBars.top,
-                systemBars.right,
-                systemBars.bottom
-            )
+        val isLoggedIn = preferences.getBoolean("isLoggedIn", false)
 
-            insets
+        if (isLoggedIn) {
+            val username = preferences.getString("username", "admin")
+
+            val intent = Intent(this, MainActivity::class.java)
+            intent.putExtra("username", username)
+            startActivity(intent)
+            finish()
+            return
         }
 
         binding.btnLogin.setOnClickListener {
+            val inputUsername =
+                binding.edtUsername.text.toString().trim()
 
-            val inputedUsername = binding.edtUsername.text.toString()
-            val inputedPassword = binding.edtPassword.text.toString()
+            val inputPassword =
+                binding.edtPassword.text.toString()
 
-            Log.d(
-                "Output",
-                "Username: $inputedUsername Password: $inputedPassword"
-            )
+            if (inputUsername.isEmpty() || inputPassword.isEmpty()) {
+                Toast.makeText(
+                    this,
+                    "Username dan password wajib diisi!",
+                    Toast.LENGTH_SHORT
+                ).show()
+                return@setOnClickListener
+            }
 
-            Toast.makeText(
-                this,
-                "Username: $inputedUsername Password: $inputedPassword",
-                Toast.LENGTH_LONG
-            ).show()
+            if (inputUsername == "admin" && inputPassword == "12345") {
 
-            val intent = Intent(
-                this,
-                MainActivity::class.java
-            )
+                // Menyimpan status login
+                preferences.edit()
+                    .putBoolean("isLoggedIn", true)
+                    .putString("username", inputUsername)
+                    .apply()
 
-            intent.putExtra("username", inputedUsername)
-            intent.putExtra("password", inputedPassword)
-            intent.putExtra("umur", 20)
+                Toast.makeText(
+                    this,
+                    "Login berhasil!",
+                    Toast.LENGTH_SHORT
+                ).show()
 
-            startActivity(intent)
+                val intent = Intent(this, MainActivity::class.java)
+                intent.putExtra("username", inputUsername)
+                startActivity(intent)
+                finish()
+
+            } else {
+                Toast.makeText(
+                    this,
+                    "Username atau password salah!",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 }

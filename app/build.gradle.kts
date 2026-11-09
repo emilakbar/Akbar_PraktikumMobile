@@ -43,6 +43,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.core.ktx)
     implementation(libs.material)
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
 
     // Glide untuk memuat avatar pesan
     implementation("com.github.bumptech.glide:glide:4.16.0")

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!-- Izin Internet untuk memuat avatar menggunakan Glide -->
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -17,33 +16,31 @@
             android:name=".SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.Akbar_3TIB">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
-        <!-- Halaman Login -->
+        <!-- Login -->
         <activity
             android:name=".LoginActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Halaman Main Activity -->
+        <!-- Main Activity -->
         <activity
             android:name=".MainActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Halaman Bottom Navigation -->
+        <!-- Base Activity -->
         <activity
             android:name=".BaseActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Halaman Pertemuan 5 -->
+        <!-- Pertemuan 5 -->
         <activity
             android:name=".pertemuan5.LimaActivity"
             android:exported="false"
@@ -54,7 +51,12 @@
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
 
-        <!-- Halaman Detail Pesan -->
+        <!-- Pertemuan 10 -->
+        <activity
+            android:name=".Home.pertemuan_10.TenthActivity"
+            android:exported="false" />
+
+        <!-- Detail Pesan -->
         <activity
             android:name=".Message.MessageDetailActivity"
             android:exported="false" />

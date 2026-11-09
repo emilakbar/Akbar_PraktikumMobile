@@ -1,4 +1,3 @@
-
 package com.example.Akbar_3tib.Home
 
 import android.content.Intent
@@ -6,15 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.Akbar_3tib.BaseActivity
 import com.example.Akbar_3tib.LoginActivity
 import com.example.Akbar_3tib.MainActivity
-import com.example.Akbar_3tib.R
 import com.example.Akbar_3tib.databinding.FragmentHomeBinding
 import com.example.Akbar_3tib.pertemuan5.LimaActivity
+import com.example.Akbar_3tib.Home.pertemuan_10.TenthActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.snackbar.Snackbar
 
@@ -36,10 +33,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
 
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?
-    ) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         (requireActivity() as AppCompatActivity)
@@ -48,11 +42,10 @@ class HomeFragment : Fragment() {
         (requireActivity() as AppCompatActivity)
             .supportActionBar?.title = "Home"
 
-        val preferences = requireActivity()
-            .getSharedPreferences(
-                "LoginSession",
-                AppCompatActivity.MODE_PRIVATE
-            )
+        val preferences = requireActivity().getSharedPreferences(
+            "LoginSession",
+            AppCompatActivity.MODE_PRIVATE
+        )
 
         val username = preferences.getString("username", "Username")
 
@@ -78,9 +71,7 @@ class HomeFragment : Fragment() {
         binding.btnAlert.setOnClickListener {
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle("Hapus Data")
-                .setMessage(
-                    "Data yang dihapus tidak bisa dikembalikan."
-                )
+                .setMessage("Data yang dihapus tidak bisa dikembalikan.")
                 .setNegativeButton("Batal", null)
                 .setPositiveButton("Hapus") { dialog, _ ->
                     dialog.dismiss()
@@ -106,6 +97,13 @@ class HomeFragment : Fragment() {
         binding.btnToEnam.setOnClickListener {
             startActivity(
                 Intent(requireActivity(), MainActivity::class.java)
+            )
+        }
+
+        // Tombol Pertemuan 10
+        binding.btnToTenth.setOnClickListener {
+            startActivity(
+                Intent(requireActivity(), TenthActivity::class.java)
             )
         }
 
